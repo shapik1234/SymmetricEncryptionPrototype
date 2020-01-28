@@ -1,0 +1,276 @@
+﻿<Window x:Class="EncryptionPrototype.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EncryptionPrototype"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Title="Encryption Prototype" Height="300" Width="700">
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom" Height="20">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem>
+                <TextBlock Text="Connected to:"></TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+        <Grid>
+            <TabControl x:Name="tabControl" HorizontalAlignment="Left" VerticalAlignment="Top" Height="250" Width="690" Padding="5,0,5,5">
+                <TabItem Header="Install DB">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="210" />
+                            <ColumnDefinition Width="130" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0,10,0,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="26" />
+                                    <RowDefinition Height="26" />
+                                    <RowDefinition Height="26" />
+                                    <RowDefinition Height="26" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="110" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0" Grid.Column="0">Server</Label>
+                                <TextBox x:Name="textBoxServerName" Grid.Row="0" Grid.Column="1" Height="20" />
+
+                                <Label Grid.Row="1" Grid.Column="0">DB Name</Label>
+                                <TextBox x:Name="textDBName" Grid.Row="1" Grid.Column="1" Height="20" />
+
+                                <Label Grid.Row="2" Grid.Column="0">User</Label>
+                                <TextBox x:Name="textBoxUserName" Grid.Row="2" Grid.Column="1" Height="20" />
+
+                                <Label Grid.Row="3" Grid.Column="0">Password</Label>
+                                <TextBox x:Name="textBoxPassword" Grid.Row="3" Grid.Column="1" Height="20" />
+                            </Grid>
+                        </StackPanel>
+                        <Button
+                            x:Name="buttonCreateDB"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Content="Create DB \ Install"
+                            Width="130"
+                            Margin="5"
+                            HorizontalAlignment="Left"
+                            Click="ButtonCreateDBClick" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="File Encryption">
+                    <Grid Margin="0,5,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="textBoxBrowseFile" Grid.Row="0" IsReadOnly="True" Grid.ColumnSpan="2" />
+                        <Button                        
+                            x:Name="buttonBrowseFileForEncrypt"
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Content="Browse..."
+                            Width="75"
+                            Cursor="Hand"
+                            HorizontalAlignment="Left"
+                            Margin="5,0,0,0"
+                            Click="ButtonBrowseFileClick" />
+
+                        <Button                        
+                            x:Name="buttonEncrypt"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Content="Encrypt"
+                            Width="100"
+                            Cursor="Hand"
+                            HorizontalAlignment="Left"
+                            Margin="0,5,0,0"
+                            Click="ButtonEncryptClick" />
+
+                        <Button
+                        x:Name="buttonDecrypt"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Content="Decrypt"
+                        Width="100"
+                        Cursor="Hand"
+                        HorizontalAlignment="Right"
+                        Margin="0,5,0,0"
+                        Click="ButtonDecryptClick" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Encryption Perfomance">
+                    <Grid Margin="0,4,0,1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="29" />
+                            <ColumnDefinition Width="181"/>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="textBoxBrowseDirectory" Grid.Row="0" IsReadOnly="True" Grid.ColumnSpan="2" />
+
+                        <Button                        
+                        x:Name="buttonBrowseDirectoryForPerfomance"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Content="Browse directory..."
+                        Width="102"
+                        Cursor="Hand"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"
+                        Click="ButtonBrowseDirectoryClick" />
+
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="3" Margin="0,5,0,180" Grid.RowSpan="2">
+                            <Button                        
+                        x:Name="buttonStartPerfomance"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Content="Start test"
+                        Width="100"
+                        Cursor="Hand"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,0,5"
+                        Click="ButtonStartPerfomanceClick" Grid.ColumnSpan="2" />
+
+                        </StackPanel>
+
+                        <DataGrid
+                            x:Name="dgGetPerfomanceInfo" 
+                            AutoGenerateColumns="False"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            Grid.Row="2"
+                            IsReadOnly="True"
+                            ColumnWidth="*"
+                            SelectionMode="Single"
+                            HorizontalGridLinesBrush="DarkGray"
+                            RowBackground="LightGray"
+                            AlternatingRowBackground="White"
+                            Height="180"
+                            MinRowHeight="23"
+                            MinColumnWidth="70"
+                            SelectionChanged="DataGridGetPerfomance_OnSelectionChanged" 
+                            HorizontalAlignment="Left"
+                            Width="682" >
+
+                            <DataGrid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="12" />
+                                </Style>
+                            </DataGrid.Resources>
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="File" Binding="{Binding FileName}" Width="70">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="ToolTip">
+                                                <Setter.Value>
+                                                    <TextBlock Text='{Binding FileName}' />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Key time [ms]" Binding="{Binding KeyGenerationTime}" Width="85">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="ToolTip">
+                                                <Setter.Value>
+                                                    <TextBlock Text='{Binding KeyGenerationTime}' />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Encr. time [ms]" Binding="{Binding EncriptionTime}" Width="100">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="ToolTip">
+                                                <Setter.Value>
+                                                    <TextBlock Text='{Binding EncriptionTime}' />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Decr. time [ms]" Binding="{Binding DecriptionTime}" Width="100">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="ToolTip">
+                                                <Setter.Value>
+                                                    <TextBlock Text='{Binding DecriptionTime}' />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="File size [bytes]" Binding="{Binding FileSize}" Width="100">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="ToolTip">
+                                                <Setter.Value>
+                                                    <TextBlock Text='{Binding FileSize}' />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="EncryptFile size [bytes]" Binding="{Binding EncryptFileSize}" Width="130">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="ToolTip">
+                                                <Setter.Value>
+                                                    <TextBlock Text='{Binding EncryptFileSize}' />
+                                                </Setter.Value>
+                                            </Setter> 
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Conversion [%]" Binding="{Binding Conversion}" Width="130">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="ToolTip">
+                                                <Setter.Value>
+                                                    <TextBlock Text='{Binding Conversion}' />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </DockPanel>
+</Window>
